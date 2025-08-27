@@ -10,6 +10,16 @@ public class AppCalc {
     public static int subtracao(int a, int b) {
         return a - b;
     }
+    
+    public static int multiplicacao(int a, int b) {
+        return a * b;
+    }
+
+    public static double divisao(int a, int b) {
+        if (b == 0) throw new IllegalArgumentException("Divisão por zero não permitida!");
+        return (double) a / b;
+    }
+
 
     public static void main(String[] args) {
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 16));
@@ -21,7 +31,7 @@ public class AppCalc {
         JTextField campoA = new JTextField();
         JTextField campoB = new JTextField();
 
-        String[] operacoes = {"Soma", "Subtração"};
+        String[] operacoes = {"Soma", "Subtração", "Multiplicação", "Divisão"};
         JComboBox<String> comboOperacao = new JComboBox<>(operacoes);
 
         painel.add(new JLabel("Digite o primeiro número:"));
@@ -36,7 +46,7 @@ public class AppCalc {
         JOptionPane.showMessageDialog(
             null,
             painel,
-            "Adição e Subtração",
+            "Calculadora",
             JOptionPane.PLAIN_MESSAGE
         );
 
@@ -51,6 +61,10 @@ public class AppCalc {
                 resultado = soma(a, b);
             } else if (operacao.equals("Subtração")) {
                 resultado = subtracao(a, b);
+            } else if (operacao.equals("Multiplicação")) {
+                resultado = multiplicacao(a, b);
+            } else if (operacao.equals("Divisão")) {
+                resultado = (int) divisao(a, b);
             }
 
             JOptionPane.showMessageDialog(
